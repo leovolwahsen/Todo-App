@@ -1,8 +1,8 @@
-import { ToastContainer, toast } from "react-toastify";
 import React, { useState } from "react";
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { ToastContainer, toast } from "react-toastify";
 import NavbarComponent from "./components/Nav/Navbar";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
