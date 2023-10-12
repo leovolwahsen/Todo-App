@@ -1,0 +1,54 @@
+import { ToastContainer, toast } from "react-toastify";
+import React, { useState } from "react";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import NavbarComponent from "./components/Nav/Navbar";
+
+function App() {
+  const [inputValue, setInputValue] = useState("");
+  const [list, setList] = useState([]);
+
+  function handleClick(event) {
+    event.preventDefault();
+    toast.success("Todo erstellt!");
+
+    if (inputValue) {
+      setList([...list, inputValue]);
+      setInputValue("");
+    }
+  }
+
+  function handleRemove(index) {
+    const updatedList = list.filter((item, i) => i !== index);
+    toast.error("Todo gelöscht!");
+    setList(updatedList);
+  }
+
+  return (
+    <>
+      <NavbarComponent />
+      <div className="container">
+        <form onSubmit={handleClick}>
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(event) => setInputValue(event.target.value)}
+          />
+
+          <button type="submit">Füge Todo Hinzu</button>
+        </form>
+        <ul>
+          {list.map((item, index) => (
+            <li key={index} onClick={() => handleRemove(index)}>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <App />
+      </div>
+
+      <ToastContainer />
+    </>
+  );
+}
+export default App;
